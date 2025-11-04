@@ -38,6 +38,113 @@ public class calculadora extends JFrame implements ActionListener{
         contenedor = getContentPane();
         contenedor.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(3, 3, 3, 3);
+        c.anchor = GridBagConstraints.CENTER;
+        c.gridy = 0; c.gridx = 0;
+        campoResultado = new JTextField("Resultado");
+        campoResultado.setEditable(false);
+        campoResultado.setForeground(Color.gray);
+        campoResultado.setPreferredSize(new Dimension(300,50));
+        campoResultado.setFont(new Font("Arial",Font.BOLD,18));
+        contenedor.add(campoResultado,c);
+        
+        cero = new JButton("0");
+        cero.setPreferredSize(new Dimension(70,70));
+        uno = new JButton("1");
+        uno.setPreferredSize(new Dimension(70,70));
+        dos = new JButton("2");
+        dos.setPreferredSize(new Dimension(70,70));
+        tres = new JButton("3");
+        tres.setPreferredSize(new Dimension(70,70));
+        cuatro = new JButton("4");
+        cuatro.setPreferredSize(new Dimension(70,70));
+        cinco = new JButton("5");
+        cinco.setPreferredSize(new Dimension(70,70));
+        seis = new JButton("6");
+        seis.setPreferredSize(new Dimension(70,70));
+        siete = new JButton("7");
+        siete.setPreferredSize(new Dimension(70,70));
+        ocho = new JButton("8");
+        ocho.setPreferredSize(new Dimension(70,70));
+        nueve = new JButton("9");
+        nueve.setPreferredSize(new Dimension(70,70));
+        division = new JButton("/");
+        division.setPreferredSize(new Dimension(70,70));
+        multiplicacion = new JButton("x");
+        multiplicacion.setPreferredSize(new Dimension(70,70));
+        resta = new JButton("-");
+        resta.setPreferredSize(new Dimension(70,70));
+        suma = new JButton("+");
+        suma.setPreferredSize(new Dimension(70,70));
+        igual = new JButton("=");
+        igual.setPreferredSize(new Dimension(70,70));
+        punto = new JButton(".");
+        punto.setPreferredSize(new Dimension(70,70));
+        
+        eliminar = new JButton("C");
+        retroceder = new JButton("<x");
+        eliminar.addActionListener(this);
+        retroceder.addActionListener(this);
+        eliminar.setPreferredSize(new Dimension(146,30));
+        retroceder.setPreferredSize(new Dimension(146,30));
+        
+        
+        cero.addActionListener(this);
+        uno.addActionListener(this);
+        dos.addActionListener(this);
+        tres.addActionListener(this);
+        cuatro.addActionListener(this);
+        cinco.addActionListener(this);
+        seis.addActionListener(this);
+        siete.addActionListener(this);
+        ocho.addActionListener(this);
+        nueve.addActionListener(this);
+        division.addActionListener(this);
+        multiplicacion.addActionListener(this);
+        resta.addActionListener(this);
+        suma.addActionListener(this);
+        igual.addActionListener(this);
+        punto.addActionListener(this);
+        
+        JPanel panelBF1 = new JPanel();
+        JPanel panelBF2 = new JPanel();
+        JPanel panelBF3 = new JPanel();
+        JPanel panelBF4 = new JPanel();
+        JPanel panelBF5 = new JPanel();
+        
+        panelBF1.add(siete);
+        panelBF1.add(ocho);
+        panelBF1.add(nueve);
+        panelBF1.add(division);
+        
+        panelBF2.add(cuatro);
+        panelBF2.add(cinco);
+        panelBF2.add(seis);
+        panelBF2.add(multiplicacion);
+        
+        panelBF3.add(uno);
+        panelBF3.add(dos);
+        panelBF3.add(tres);
+        panelBF3.add(resta);
+        
+        panelBF4.add(cero);
+        panelBF4.add(punto);
+        panelBF4.add(igual);
+        panelBF4.add(suma);
+        
+        panelBF5.add(eliminar);
+        panelBF5.add(retroceder);
+        
+        c.gridy = 1;
+        contenedor.add(panelBF1,c);
+        c.gridy = 2;
+        contenedor.add(panelBF2,c);
+        c.gridy = 3;
+        contenedor.add(panelBF3,c);
+        c.gridy = 4;
+        contenedor.add(panelBF4,c);
+        c.gridy = 5;
+        contenedor.add(panelBF5,c);
     }
     
     @Override
