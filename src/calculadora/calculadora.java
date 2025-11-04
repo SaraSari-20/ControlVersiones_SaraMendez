@@ -149,6 +149,95 @@ public class calculadora extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
+        Object fuente = e.getSource();
         
+        if(campoResultado.getText().equals("Resultado") || campoResultado.getText().equals("Error") || nuevaOperacion){
+            campoResultado.setForeground(Color.black);
+            campoResultado.setText("");
+            nuevaOperacion = false;
+        }
+        
+        String actual = campoResultado.getText();
+        
+        
+        if (fuente == cero || fuente == uno || fuente == dos || fuente == tres || fuente == cuatro ||
+            fuente == cinco || fuente == seis || fuente == siete || fuente == ocho || fuente == nueve || fuente == punto) {
+
+            JButton boton = (JButton) fuente;
+            campoResultado.setText(actual + boton.getText());
+        }
+        
+        if (fuente == suma || fuente == resta || fuente == multiplicacion || fuente == division) {
+            try {
+                primerNumero = Double.parseDouble(campoResultado.getText());
+                JButton boton = (JButton) fuente;
+                operacion = boton.getText();
+                nuevaOperacion = true;
+            } catch (NumberFormatException ex) {
+                campoResultado.setForeground(Color.gray);
+                campoResultado.setText("Error");
+            }
+        }
+        
+        if (fuente == igual) {
+            try {
+                segundoNumero = Double.parseDouble(campoResultado.getText());
+
+                switch (operacion) {
+                    case "+": resultado = primerNumero + segundoNumero; break;
+                    case "-": resultado = primerNumero - segundoNumero; break;
+                    case "x": resultado = primerNumero * segundoNumero; break;
+                    case "/": 
+                        if (segundoNumero == 0) {
+                            campoResultado.setText("No se puede dividir entre 0");
+                            return;
+                        }
+                        resultado = primerNumero / segundoNumero;
+                        break;
+                }
+
+                
+                campoResultado.setText(String.valueOf(resultado));
+                nuevaOperacion = true;
+            } catch (Exception ex) {
+                campoResultado.setForeground(Color.gray);
+                campoResultado.setText("Error");
+            }
+            resultado = 0;
+            primerNumero = 0;
+            segundoNumero = 0;
+        }
+        
+        if(e.getSource() == eliminar){
+            primerNumero = 0;
+            segundoNumero = 0;
+            resultado = 0;
+            operacion = "";
+            nuevaOperacion = true;
+            
+            campoResultado.setForeground(Color.gray);
+            campoResultado.setText("Resultado");
+        }else if(e.getSource() == retroceder){
+            actual = campoResultado.getText();
+            
+            if(actual.equals("Resultado") || actual.length() == 0){
+                return;
+            }
+            
+            if(actual.length() == 1){
+                campoResultado.setForeground(Color.gray);
+                campoResultado.setText("Resultado");
+                nuevaOperacion = true;
+                return;
+            }
+            
+            String nuevoTexto = actual.substring(0,actual.length() - 1);
+            campoResultado.setText(nuevoTexto);
+        }
+    }
+    
+    public static void main(String[] args) {
+        calculadora cal = new calculadora();
+        cal.setVisible(true);
     }
 }
